@@ -1,0 +1,30 @@
+{
+  "name": "resin-wifivisor",
+  "version": "0.0.1",
+  "description": "a supervisor-like set of endpoints that enables wifi management under resin containers",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/resin-io-playground/resin-wifivisor.git"
+  },
+  "keywords": [
+    "resin",
+    "wifi",
+    "supervisor"
+  ],
+  "author": "Carlo Maria Curinga",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/resin-io-playground/resin-wifivisorissues"
+  },
+  "homepage": "https://github.com/resin-io-playground/resin-wifivisor#readme",
+  "dependencies": {
+    "async": "^2.0.0-rc.6",
+    "connman-simplified": "https://github.com/curcuz/connman-simplified",
+    "express": "^4.14.0",
+    "hasbin": "^1.2.3"
+  }
+}

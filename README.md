@@ -1,2 +1,110 @@
 # resin-wifivisor
-a supervisor-like set of endpoints that enables wifi management under resin containers using a simple REST interface
+a supervisor-like set of endpoints that enables wifi management under resin containers
+
+### Dependencies
+
+* `connman`
+* `libdbus-1-dev`
+* `libglib2.0-dev`
+
+on **Debian**/**Ubuntu** :
+
+`sudo apt-get update && sudo apt -get install connman libdbus-1 libglib2.0-dev -y`
+
+### Installation
+
+`npm i resin-wifivisor --save`
+
+### Usage
+
+```javascript
+
+const Wifi = require('@fwrsrl/resin-wifivisor');
+
+Wifi.init();
+
+Wifi.on('error', function(err) {
+    console.error(err)
+});
+
+Wifi.on('start', function(port) {
+    console.log("wifi manager listening on port " + port);
+});
+
+Wifi.on('connect', function(ssid) {
+    console.log('connected to ' + ssid);
+});
+
+Wifi.on('disconnect', function() {
+    console.log("disconnected");
+});
+
+Wifi.on('hotspot', function(data) {
+    if (data.active) {
+        console.log("hotspot enabled with SSID: " + data.ssid + " and passphrase: " + data.psk);
+    } else {
+        console.log("hotspot disabled");
+    }
+});
+
+Wifi.on('powered', function(status) {
+    if (status) {
+        console.log("Wifi enabled");
+    } else {
+        console.log("Wifi disabled");
+    }
+});
+
+```
+
+### APIs
+
+You can set the port on which to expose the webserver via `WIFIVISOR_CONFIG_PORT` *env-var* (defaults to `3000`)
+
+##### Get WiFi state
+
+Endpoint | Method | Response | Description
+------------ | ------------- | ------------- | -------------
+`/v1/wifi/state` | `GET` | empty `200 OK` | returns the current state of the Wifi chip
+
+##### Set WiFi power mode to ON
+
+Endpoint | Method | Response | Description
+------------ | ------------- | ------------- | -------------
+`/v1/wifi/state` | `PUT` | empty `200 OK` | powers *ON* the WiFi chip
+
+##### Set WiFi power mode to OFF
+
+Endpoint | Method | Response | Description
+------------ | ------------- | ------------- | -------------
+`/v1/wifi/state` | `DELETE` | empty `200 OK` | powers *OFF* the WiFi chip
+
+##### Scan WiFi
+
+Endpoint | Method | Response | Description
+------------ | ------------- | ------------- | -------------
+`/v1/wifi/` | `GET` | obj `200 OK` | scans for Wifi access points
+
+##### Connect
+
+Endpoint | Method | Response | Description
+------------ | ------------- | ------------- | -------------
+`/v1/wifi/<ssid>/<psk>` | `POST` | obj `200 OK` | connects to a given Wifi access point with given `SSID` and `PSK`
+
+##### Disconnect
+
+Endpoint | Method | Response | Description
+------------ | ------------- | ------------- | -------------
+`/v1/wifi/` | `DELETE` | empty `200 OK` | disconnects to any current Wifi access point
+
+##### Hotspot ON
+
+Endpoint | Method | Response | Description
+------------ | ------------- | ------------- | -------------
+`/v1/wifi/hotspot/<ssid>/<psk>` | `POST` | obj `200 OK` | enables the Hotspot mode with given `SSID` and `PSK`
+
+##### Hotspot OFF
+
+Endpoint | Method | Response | Description
+------------ | ------------- | ------------- | -------------
+`/v1/wifi/hotspot/` | `DELETE` | empty `200 OK` | disables the Hotspot mode
