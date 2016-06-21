@@ -1,6 +1,6 @@
 {
   "name": "resin-wifivisor",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "a supervisor-like set of endpoints that enables wifi management under resin containers",
   "main": "index.js",
   "scripts": {
