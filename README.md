@@ -59,7 +59,8 @@ Wifi.on('powered', function(status) {
 
 ### APIs
 
-You can set the port on which to expose the webserver via `WIFIVISOR_CONFIG_PORT` *env-var* (defaults to `3000`)
+* You can set the port on which to expose the webserver via `WIFIVISOR_CONFIG_PORT` *env-var* (defaults to `3000`)
+* You can set the connections configuration path via `WIFIVISOR_CONFIG_DIR` *env-var* (defaults to `/data/wifi/`)
 
 ##### Get WiFi state
 
