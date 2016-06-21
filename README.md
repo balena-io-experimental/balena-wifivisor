@@ -101,7 +101,7 @@ Endpoint | Method | Response | Description
 
 Endpoint | Method | Response | Description
 ------------ | ------------- | ------------- | -------------
-`/v1/wifi/hotspot/<ssid>/<psk>` | `POST` | obj `200 OK` | enables the Hotspot mode with given `SSID` and `PSK`
+`/v1/wifi/hotspot/<ssid>/<psk>` | `POST` | obj `200 OK` *or* `500 INTERNAL SERVER ERROR` | enables the Hotspot mode with given `SSID` and `PSK`
 
 ##### Hotspot OFF
 
