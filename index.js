@@ -41,17 +41,17 @@
                         });
 
                         app.put('/v1/wifi/state', function(req, res) {
-                          wifi.enable(function() {
-                            self.emit("powered",true);
-                            res.sendStatus(200);
-                          });
+                            wifi.enable(function() {
+                                self.emit("powered", true);
+                                res.sendStatus(200);
+                            });
                         });
 
                         app.delete('/v1/wifi/state', function(req, res) {
-                          wifi.disable(function() {
-                            self.emit("powered",false);
-                            res.sendStatus(200);
-                          });
+                            wifi.disable(function() {
+                                self.emit("powered", false);
+                                res.sendStatus(200);
+                            });
                         });
 
                         app.get('/v1/wifi', function(req, res) {
@@ -114,7 +114,40 @@
                             });
                         });
 
-                        app.listen(self.port, function() {
+                        app.get('/v1/wifi/config', function(req, res) {
+                            helper.scanWifiConfigs(function(err, configs) {
+                                if (err) {
+                                    self.emit("error", err);
+                                    res.sendStatus(500);
+                                } else {
+                                    res.send(configs);
+                                }
+                            });
+                        });
+
+                        app.post('/v1/wifi/config/:ssid/:psk', function(req, res) {
+                            helper.createWifiConfig({"ssid":req.params.ssid,"psk": req.params.psk},function(err) {
+                                if (err) {
+                                    self.emit("error", err);
+                                    res.sendStatus(500);
+                                } else {
+                                    res.sendStatus(200);
+                                }
+                            });
+                        });
+
+                        app.delete('/v1/wifi/config/:ssid', function(req, res) {
+                            helper.removeWifiConfig(req.params.ssid,function(err) {
+                                if (err) {
+                                    self.emit("error", err);
+                                    res.sendStatus(500);
+                                } else {
+                                    res.sendStatus(200);
+                                }
+                            });
+                        });
+
+                        app.listen(self.port, '127.0.0.1', function() {
                             self.emit("start", self.port);
                         });
                     }

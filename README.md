@@ -108,3 +108,21 @@ Endpoint | Method | Response | Description
 Endpoint | Method | Response | Description
 ------------ | ------------- | ------------- | -------------
 `/v1/wifi/hotspot/` | `DELETE` | empty `200 OK` | disables the Hotspot mode
+
+##### Get Configs
+
+Endpoint | Method | Response | Description
+------------ | ------------- | ------------- | -------------
+`/v1/wifi/config/` | `GET` | obj `200 OK` *or* `500 INTERNAL SERVER ERROR` | gets already configured connections
+
+##### Save config
+
+Endpoint | Method | Response | Description
+------------ | ------------- | ------------- | -------------
+`/v1/wifi/config/<ssid>/<psk>` | `POST` | empty `200 OK` *or* `500 INTERNAL SERVER ERROR` | save connection config
+
+##### Delete config
+
+Endpoint | Method | Response | Description
+------------ | ------------- | ------------- | -------------
+`/v1/wifi/config/<ssid>` | `DELETE` | empty `200 OK` *or* `500 INTERNAL SERVER ERROR` | delete connection config
