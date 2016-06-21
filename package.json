@@ -1,6 +1,6 @@
 {
   "name": "resin-wifivisor",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "a supervisor-like set of endpoints that enables wifi management under resin containers",
   "main": "index.js",
   "scripts": {
@@ -25,6 +25,7 @@
     "async": "^2.0.0-rc.6",
     "connman-simplified": "https://github.com/curcuz/connman-simplified",
     "express": "^4.14.0",
-    "hasbin": "^1.2.3"
+    "hasbin": "^1.2.3",
+    "jsonfile": "^2.3.1"
   }
 }

@@ -7,6 +7,7 @@
     const EventEmitter = require('events').EventEmitter;
     const util = require('util');
     const hasbin = require('hasbin');
+    const helper = require('./lib/helper');
     const connman = require('connman-simplified')();
     const express = require('express');
     const app = express();
