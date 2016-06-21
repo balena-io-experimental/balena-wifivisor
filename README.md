@@ -19,7 +19,7 @@ on **Debian**/**Ubuntu** :
 
 ```javascript
 
-const Wifi = require('@fwrsrl/resin-wifivisor');
+const Wifi = require('resin-wifivisor');
 
 Wifi.init();
 
