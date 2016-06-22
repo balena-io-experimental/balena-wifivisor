@@ -57,7 +57,13 @@
                         app.get('/v1/wifi', function(req, res) {
                             if (!self.serveCached) {
                                 wifi.getNetworks(function(err, list) {
-                                    res.send(list);
+                                  if (err) {
+                                      self.emit('error', err);
+                                      res.sendStatus(500);
+                                  } else {
+                                      self.emit('scan', list);
+                                      res.send(list);
+                                  }
                                 });
                             } else {
                                 wifi.getNetworksCache(function(err, list) {
@@ -68,9 +74,14 @@
 
                         app.post('/v1/wifi/:ssid/:psk', function(req, res) {
                             wifi.getNetworks(function(err, list) {
-                                wifi.join(req.params.ssid, req.params.psk);
-                                self.emit('connect', req.params.ssid);
-                                res.sendStatus(200);
+                                if (err) {
+                                    self.emit('error', err);
+                                    res.sendStatus(500);
+                                } else {
+                                    wifi.join(req.params.ssid, req.params.psk);
+                                    self.emit('connect', req.params.ssid);
+                                    res.sendStatus(200);
+                                }
                             });
                         });
 
@@ -126,7 +137,10 @@
                         });
 
                         app.post('/v1/wifi/config/:ssid/:psk', function(req, res) {
-                            helper.createWifiConfig({"ssid":req.params.ssid,"psk": req.params.psk},function(err) {
+                            helper.createWifiConfig({
+                                "ssid": req.params.ssid,
+                                "psk": req.params.psk
+                            }, function(err) {
                                 if (err) {
                                     self.emit("error", err);
                                     res.sendStatus(500);
@@ -137,7 +151,7 @@
                         });
 
                         app.delete('/v1/wifi/config/:ssid', function(req, res) {
-                            helper.removeWifiConfig(req.params.ssid,function(err) {
+                            helper.removeWifiConfig(req.params.ssid, function(err) {
                                 if (err) {
                                     self.emit("error", err);
                                     res.sendStatus(500);
