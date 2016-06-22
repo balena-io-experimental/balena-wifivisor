@@ -68,11 +68,15 @@ Endpoint | Method | Response | Description
 ------------ | ------------- | ------------- | -------------
 `/v1/wifi/state` | `GET` | empty `200 OK` | returns the current state of the Wifi chip
 
+`curl -X GET 127.0.0.1:3000/v1/wifi/state`
+
 ##### Set WiFi power mode to ON
 
 Endpoint | Method | Response | Description
 ------------ | ------------- | ------------- | -------------
 `/v1/wifi/state` | `PUT` | empty `200 OK` | powers *ON* the WiFi chip
+
+`curl -X PUT 127.0.0.1:3000/v1/wifi/state`
 
 ##### Set WiFi power mode to OFF
 
@@ -80,11 +84,15 @@ Endpoint | Method | Response | Description
 ------------ | ------------- | ------------- | -------------
 `/v1/wifi/state` | `DELETE` | empty `200 OK` | powers *OFF* the WiFi chip
 
+`curl -X DELETE 127.0.0.1:3000/v1/wifi/state`
+
 ##### Scan WiFi
 
 Endpoint | Method | Response | Description
 ------------ | ------------- | ------------- | -------------
 `/v1/wifi/` | `GET` | obj `200 OK` | scans for Wifi access points
+
+`curl -X GET 127.0.0.1:3000/v1/wifi`
 
 ##### Connect
 
@@ -92,11 +100,15 @@ Endpoint | Method | Response | Description
 ------------ | ------------- | ------------- | -------------
 `/v1/wifi/<ssid>/<psk>` | `POST` | obj `200 OK` | connects to a given Wifi access point with given `SSID` and `PSK`
 
+`curl -X POST 127.0.0.1:3000/v1/wifi/<ssid>/<psk>`
+
 ##### Disconnect
 
 Endpoint | Method | Response | Description
 ------------ | ------------- | ------------- | -------------
 `/v1/wifi/` | `DELETE` | empty `200 OK` | disconnects to any current Wifi access point
+
+`curl -X DELETE 127.0.0.1:3000/v1/wifi`
 
 ##### Hotspot ON
 
@@ -104,11 +116,15 @@ Endpoint | Method | Response | Description
 ------------ | ------------- | ------------- | -------------
 `/v1/wifi/hotspot/<ssid>/<psk>` | `POST` | obj `200 OK` *or* `500 INTERNAL SERVER ERROR` | enables the Hotspot mode with given `SSID` and `PSK`
 
+`curl -X POST 127.0.0.1:3000/v1/wifi/hotspot/<ssid>/<psk>`
+
 ##### Hotspot OFF
 
 Endpoint | Method | Response | Description
 ------------ | ------------- | ------------- | -------------
 `/v1/wifi/hotspot/` | `DELETE` | empty `200 OK` | disables the Hotspot mode
+
+`curl -X DELETE 127.0.0.1:3000/v1/wifi/hotspot`
 
 ##### Get Configs
 
@@ -116,17 +132,23 @@ Endpoint | Method | Response | Description
 ------------ | ------------- | ------------- | -------------
 `/v1/wifi/config/` | `GET` | obj `200 OK` *or* `500 INTERNAL SERVER ERROR` | gets already configured connections
 
+`curl -X GET 127.0.0.1:3000/v1/wifi/config`
+
 ##### Save config
 
 Endpoint | Method | Response | Description
 ------------ | ------------- | ------------- | -------------
 `/v1/wifi/config/<ssid>/<psk>` | `POST` | empty `200 OK` *or* `500 INTERNAL SERVER ERROR` | save connection config
 
+`curl -X POST 127.0.0.1:3000/v1/wifi/config/<ssid>/<psk>`
+
 ##### Delete config
 
 Endpoint | Method | Response | Description
 ------------ | ------------- | ------------- | -------------
 `/v1/wifi/config/<ssid>` | `DELETE` | empty `200 OK` *or* `500 INTERNAL SERVER ERROR` | delete connection config
+
+`curl -X DELETE 127.0.0.1:3000/v1/wifi/config/<ssid>`
 
 ## License
 
