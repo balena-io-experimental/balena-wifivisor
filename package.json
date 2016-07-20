@@ -23,7 +23,7 @@
   "homepage": "https://github.com/resin-io-playground/resin-wifivisor#readme",
   "dependencies": {
     "async": "^2.0.0-rc.6",
-    "connman-simplified": "https://github.com/curcuz/connman-simplified",
+    "connman-simplified-resin": "^0.1.6",
     "express": "^4.14.0",
     "hasbin": "^1.2.3",
     "jsonfile": "^2.3.1"
