@@ -9,7 +9,7 @@ a supervisor-like set of endpoints that enables wifi management under resin cont
 
 on **Debian**/**Ubuntu** :
 
-`sudo apt-get update && sudo apt -get install connman libdbus-1 libglib2.0-dev -y`
+`sudo apt-get update && sudo apt-get install connman libdbus-1 libglib2.0-dev -y`
 
 ### Installation
 
